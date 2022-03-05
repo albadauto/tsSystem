@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import indexRouter from './routes/index.route';
 import path from 'path';
+import session from 'express-session';
+import mainRouter from './routes/main.route';
 
 export class App{
     private express: express.Application;
@@ -33,10 +35,16 @@ export class App{
         this.express.use(express.urlencoded({extended: true}));
         this.express.use(express.json());
         this.express.use(express.static(path.join(__dirname, '../public')));
+        this.express.use(session({
+            resave:true,
+            saveUninitialized:true,
+            secret:'KKKKKKKKKKKKKKKKKK'
+        }));
     }
 
     private routes(): void{
         this.express.use('/', indexRouter)
+        this.express.use('/main', mainRouter)
     }
 
     private listen(): void{

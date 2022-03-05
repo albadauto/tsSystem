@@ -1,7 +1,13 @@
 import { Request, Response } from 'express';
 import usuarioModel from '../models/usuario.model';
+declare module 'express-session'{
+    interface Session{
+        nome: string;
+    }
+}
 
 class IndexController{
+    
     public index(req: Request, res: Response){
         res.render('index')
     }
@@ -10,7 +16,10 @@ class IndexController{
         try{
             const search = await usuarioModel.find({nome: req.body.nome, senha:req.body.senha});
             if(search.length > 0){
-                res.send('Parabens!');
+                if(req.session){
+                    req.session.nome = req.body.nome
+                }
+                res.redirect('/main');
             }else{
                 res.send('Não parabens :/');
             }
