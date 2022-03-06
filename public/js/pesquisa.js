@@ -1,5 +1,5 @@
 function searchName(){
-    const trs = [...document.querySelectorAll('#lista tbody tr')];
+    const trs = document.querySelectorAll('#lista tbody tr');
     let search = document.getElementById('searchBar').value.toLowerCase();
 
     trs.forEach(el => {
