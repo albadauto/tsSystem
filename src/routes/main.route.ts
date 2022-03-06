@@ -8,4 +8,6 @@ mainRouter.post('/registerUser', MainController.registerUser);
 
 mainRouter.get('/destroySession', MainController.destroySession);
 
+mainRouter.get('/delete/:id', MainController.delete);
+
 export default mainRouter;

@@ -36,6 +36,15 @@ class MainController{
     public destroySession(req: Request, res: Response) : void{
         req.session.destroy(() => res.redirect('/'));
     }
+
+    public async delete(req: Request, res:Response): Promise<void>{
+        try{
+            await usuarioModel.deleteOne({_id: req.params.id});
+            res.redirect('/main');
+        }catch(err){
+            console.log(err)
+        }
+    } 
 }
 
 export default new MainController();

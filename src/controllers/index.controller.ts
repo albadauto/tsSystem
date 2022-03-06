@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import usuarioModel from '../models/usuario.model';
-
 declare module 'express-session'{
     interface Session{
         nome: string;
