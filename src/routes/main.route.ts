@@ -10,4 +10,6 @@ mainRouter.get('/destroySession', MainController.destroySession);
 
 mainRouter.get('/delete/:id', MainController.delete);
 
+mainRouter.post('/updateByID', MainController.updateByID);
+
 export default mainRouter;

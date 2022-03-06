@@ -122,6 +122,9 @@
                     <td><%= user.cpf %></td>
                     <td><%= user.senha %></td>
                     <td><a href="main/delete/<%= user._id %>" class="btn btn-danger" onclick="return confirm('Deseja Mesmo deletar?')">Deletar</a></td>
+                    <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#atualizar" id="atualizarBTN" onclick="atualizarUser('<%= user.nome %>', '<%= user.cpf %>', '<%= user.senha %>', '<%= user._id %>')">
+                        Atualizar
+                      </button></td>
                 </tr>
                 <% }) %>
 
@@ -131,7 +134,45 @@
 
 
 
+<!-- Button trigger modal -->
 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="atualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="main/updateByID" method="post">
+            <div class="row">
+                <div class="col-6">
+                    <input type="text" name="nomeAT" id="nomeATT" placeholder="Nome" class="form form-control">
+                </div>
+                <div class="col-6">
+                    <input type="text" name="cpfAT" id="cpfATT" placeholder="CPF" class="form form-control">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col">
+                    <input type="password" name="senhaAT" id="senhaATT" placeholder="senha" class="form form-control">
+                </div>
+            </div>
+            <input type="hidden" name="hdid" id="hdidATT">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
 
     <!-- Bootstrap JavaScript Libraries -->
@@ -143,5 +184,14 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 </body>
+
+<script>
+    function atualizarUser(nome, cpf, senha, id){
+        document.getElementById('nomeATT').value = nome
+        document.getElementById('cpfATT').value = cpf
+        document.getElementById('senhaATT').value = senha
+        document.getElementById('hdidATT').value = id
+    }
+</script>
 
 </html>
